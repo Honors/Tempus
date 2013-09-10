@@ -8,6 +8,9 @@ public class Period {
     elasticity = e;
   }
   public Period normal() {
-    return new Period(1, 1);
+    return new Period(42, 1);
+  }
+  public Period inter() {
+    return new Period(5, 0);
   }
 }
