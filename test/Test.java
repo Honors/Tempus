@@ -1,5 +1,5 @@
 public class Test extends Examen {
- public Boolean testDefault() {
+  public Boolean testDefault() {
     // form a list of blocks and breaks and form
     // a schedule of them to fit a given duration.
     Block hr = new Block(7, false);
@@ -13,7 +13,7 @@ public class Test extends Examen {
     Float[] sorted = sched.reshape(segments, breaks, 443f);
     return sorted[2] == 45;
   }  
- public Boolean testShortDay() {
+  public Boolean testShortDay() {
     Block hr = new Block(7, false);
     Block n = new Block(45, true);
     Block l = new Block(77, false);
