@@ -7,6 +7,10 @@ The ability to provide an initial condition, jnsert blocks, et al.
 will need to be added. 
 
 ## Schedule
+The primary function of Tempus is the following. It allows for a list
+of Blocks to be placed around a list of Breaks, in a day of a given
+duration.
+
 ```java
 Float[] reshape(Block[] blocks, Break[] breaks, float duration);
 ```
