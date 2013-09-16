@@ -1,5 +1,4 @@
-import java.lang.reflect.*;
-public class Test {
+public class Test extends Examen {
   // form a list of blocks and breaks and form
   // a schedule of them to fit a given duration.
  public Boolean testDefault() {
@@ -13,29 +12,7 @@ public class Test {
     Schedule sched = new Schedule();
     Float[] sorted = sched.reshape(segments, breaks, 438f);
     return sorted[2] > 44 && sorted[2] < 45;  
-  }
-  public static void run(String meth, String desc) {
-    Test tests = new Test();
-    Method method = null;
-    Boolean resp = null;
-    try {
-      method = tests.getClass().getMethod(meth);
-    } catch (SecurityException e) {
-    } catch (NoSuchMethodException e) {
-    }    
-    try {
-      resp = (Boolean)method.invoke(tests);
-    } catch (IllegalArgumentException e) {
-    } catch (IllegalAccessException e) {
-    } catch (InvocationTargetException e) {
-    }
-
-    if( resp ) {
-      System.out.print("PASSED: "+ desc +"\n");
-    } else {
-      System.out.print("FAILED: "+ desc +"\n");
-    }
-  }
+  }  
   public static void main(String[] args) {
     Test.run("testDefault", "Matches the default school schedule.");
   }
