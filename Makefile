@@ -1,9 +1,10 @@
 all: lib src test exe
+.PHONY: lib src test exe
 
 lib: ./lib/Examen/*.java
 	javac -d build lib/Examen/*.java
 
-src: ./src/*.java
+src: src/*.java
 	javac -d build src/*.java
 
 test: ./test/*.java
