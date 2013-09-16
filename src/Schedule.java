@@ -46,8 +46,7 @@ public class Schedule {
     ArrayList<Float> mapped = new ArrayList<Float>();
     for( Block p : ps ) {
       if( p.e && p.l + delta * p.l/elasticMag(ps) < 0 ) {
-        // TODO: make an appropriate exception name
-	throw new EmptyStackException();
+	throw new Exception();
       }
       mapped.add(p.e ? p.l + delta * p.l/elasticMag(ps) : p.l);
     }
