@@ -1,6 +1,6 @@
 import java.util.*;
 public class Schedule {
-  public float span(float fullLength, Break[] splits, int split) {
+  private float span(float fullLength, Break[] splits, int split) {
     // find the size of a given region between
     // breaks.
     if( splits.length == 0 ) {
@@ -13,7 +13,7 @@ public class Schedule {
       return splits[split].s - splits[split-1].s - splits[split-1].l;
     }
   };
-  public float magnitude(ArrayList<Block> ps) {
+  private float magnitude(ArrayList<Block> ps) {
     // find the sum of lengths of a period-array.
     float sum = 0;
     for( Block p : ps ) {
@@ -21,7 +21,7 @@ public class Schedule {
     }
     return sum;
   }
-  public float staticMag(ArrayList<Block> ps) {
+  private float staticMag(ArrayList<Block> ps) {
     // find the sum of non-elastic period lengths.
     float sum = 0;
     for( Block p : ps ) {
@@ -30,7 +30,7 @@ public class Schedule {
     }
     return sum;
   };
-  public float elasticMag(ArrayList<Block> ps) {
+  private float elasticMag(ArrayList<Block> ps) {
     // find the sum of elastic period lengths.
     float sum = 0;
     for( Block p : ps ) {
@@ -39,7 +39,7 @@ public class Schedule {
     }
     return sum;
   };
-  public ArrayList<Float> scale(ArrayList<Block> ps, float l) {
+  private ArrayList<Float> scale(ArrayList<Block> ps, float l) {
     // adjust a sequence of periods to fit
     // within a region length.
     float delta = l - magnitude(ps);
