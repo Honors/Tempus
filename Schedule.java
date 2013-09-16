@@ -1,46 +1,94 @@
-import java.lang.reflect.*;
+import java.util.*;
 public class Schedule {
-  public Period[] periods;
-  public double sumOver(String meth) {
-    double sum = 0;
-    Method method = null;
-    for( Period p : periods ) {
-      try {
-        method = p.getClass().getMethod(meth);
-      } catch (SecurityException e) {
-      } catch (NoSuchMethodException e) {
-      }    
-      try {
-        sum += (Double)method.invoke(p);
-      } catch (IllegalArgumentException e) {
-      } catch (IllegalAccessException e) {
-      } catch (InvocationTargetException e) {
-      }
+  public float span(float fullLength, Break[] splits, int split) {
+    // find the size of a given region between
+    // breaks.
+    if( splits.length == 0 ) {
+      return fullLength;
+    } else if( split == 0 ) {
+      return splits[split].s;
+    } else if(split >= splits.length) {
+      return fullLength - splits[split-1].s - splits[split-1].l;
+    } else {
+      return splits[split].s - splits[split-1].s - splits[split-1].l;
+    }
+  };
+  public float magnitude(ArrayList<Block> ps) {
+    // find the sum of lengths of a period-array.
+    float sum = 0;
+    for( Block p : ps ) {
+      sum += p.l;
     }
     return sum;
   }
-  public Schedule(Period[] ps) {
-    periods = ps;
-  }
-  public double size() {
-    return sumOver("getLength");
-  }
-  public double elasticity() {
-    return sumOver("getElasticity");
-  }
-  public Schedule reshape(double size) {
-    double parts = size();
-    double es = elasticity();
-    for( Period p : periods ) {
-      double delta = p.elasticity / es * (size - parts);
-      p.length += delta;
+  public float staticMag(ArrayList<Block> ps) {
+    // find the sum of non-elastic period lengths.
+    float sum = 0;
+    for( Block p : ps ) {
+      if( !p.e )
+        sum += p.l;
     }
-    return this;
-  }
-  public void render() {
-    for( Period p : periods ) {
-      System.out.print(String.format("%.4f | ", p.length));
+    return sum;
+  };
+  public float elasticMag(ArrayList<Block> ps) {
+    // find the sum of elastic period lengths.
+    float sum = 0;
+    for( Block p : ps ) {
+      if( p.e )
+        sum += p.l;
     }
-    System.out.print("\n");
+    return sum;
+  };
+  public ArrayList<Float> scale(ArrayList<Block> ps, float l) {
+    // adjust a sequence of periods to fit
+    // within a region length.
+    float delta = l - magnitude(ps);
+    ArrayList<Float> mapped = new ArrayList<Float>();
+    for( Block p : ps ) {
+      if( p.e && p.l + delta * p.l/elasticMag(ps) < 0 ) {
+        // TODO: make an appropriate exception name
+	throw new EmptyStackException();
+      }
+      mapped.add(p.e ? p.l + delta * p.l/elasticMag(ps) : p.l);
+    }
+    return mapped;
+  };
+  public Float[] reshape(Block[] blocks, Break[] breaks, float duration) {  
+    // TODO: adjust lunch length if necessary.
+
+    Block[] segments = blocks;
+    float scroll = 0;
+    int index = 0;
+    int breakIndex = 0;
+    ArrayList<Block> queue = new ArrayList<Block>();
+    ArrayList<Float> sorted = new ArrayList<Float>();
+    float fullLength = duration;
+    while( index < segments.length ) {
+      if( breakIndex >= breaks.length ) {
+	// if no breaks remain, push the current period
+	// to the queue unconditionally.
+	queue.add(segments[index]);
+      } else {      
+	if( scroll + segments[index].l < breaks[breakIndex].s ) {
+	  // if the current block fits into the current
+	  // queue area (a region between breaks), add
+	  // it to the queue.
+	  queue.add(segments[index]);
+	  scroll += segments[index].l;
+	} else {
+	  // otherwise, end the queue, and insert the break
+	  sorted.addAll(scale(queue, span(fullLength, breaks, breakIndex)));
+	  queue = new ArrayList<Block>();
+	  sorted.add(breaks[breakIndex].l);
+	  queue.add(segments[index]);
+	  scroll = breaks[breakIndex].s + breaks[breakIndex].l;
+	  scroll += segments[index].l;
+	  breakIndex += 1;
+	}
+      }
+      index += 1;
+    }
+    sorted.addAll(scale(queue, span(fullLength, breaks, breakIndex)));
+    return sorted.toArray(new Float[sorted.size()]);
   }
 }
