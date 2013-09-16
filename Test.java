@@ -14,7 +14,6 @@ public class Test extends Examen {
     return inRange(sorted[2], 44, 45);
   }  
   public static void main(String[] args) {
-    Test.run("testDefault", "Matches the default school schedule.");
+    Examen.run(Test.class, "testDefault", "Matches the default school schedule.");
   }
 }
-

@@ -3,23 +3,30 @@ public class Examen {
   public Boolean inRange(float x, int low, int high) {
     return x >= low && x <= high;
   }
-  public static void run(String meth, String desc) {
-    Test tests = new Test();
+  public Method getMethod(Examen obj, String meth) {
     Method method = null;
+    try {
+      method = obj.getClass().getMethod(meth);
+    } catch (Exception e) {}
+    return method;
+  }
+  public Boolean invokeTest(Method method, Examen obj)  {
     Boolean resp = null;
     try {
-      method = tests.getClass().getMethod(meth);
-    } catch (SecurityException e) {
-    } catch (NoSuchMethodException e) {
-    }    
+      resp = (Boolean)method.invoke(obj);
+    } catch (Exception e) {}
+    return resp;
+  }
+  public static void run(Class<? extends Examen> runner, String meth, String desc) {
+    // instantiate instance of the testing class
+    Examen tests = null;
     try {
-      resp = (Boolean)method.invoke(tests);
-    } catch (IllegalArgumentException e) {
-    } catch (IllegalAccessException e) {
-    } catch (InvocationTargetException e) {
-    }
+      tests = runner.newInstance();
+    } catch(Exception e){}
 
-    if( resp ) {
+    // execute and render the test method
+    Method method = tests.getMethod(tests, meth);    
+    if( tests.invokeTest(method, tests) ) {
       System.out.print("PASSED: "+ desc +"\n");
     } else {
       System.out.print("FAILED: "+ desc +"\n");
