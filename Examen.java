@@ -1,5 +1,8 @@
 import java.lang.reflect.*;
 public class Examen {
+  public Boolean inRange(float x, int low, int high) {
+    return x >= low && x <= high;
+  }
   public static void run(String meth, String desc) {
     Test tests = new Test();
     Method method = null;

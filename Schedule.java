@@ -55,7 +55,6 @@ public class Schedule {
   };
   public Float[] reshape(Block[] blocks, Break[] breaks, float duration) {  
     // TODO: adjust lunch length if necessary.
-
     Block[] segments = blocks;
     float scroll = 0;
     int index = 0;
