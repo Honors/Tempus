@@ -67,7 +67,7 @@ public class Schedule {
 	// to the queue unconditionally.
 	queue.add(segments[index]);
       } else {      
-	if( scroll + segments[index].l < breaks[breakIndex].s ) {
+	if( scroll + segments[index].l <= breaks[breakIndex].s ) {
 	  // if the current block fits into the current
 	  // queue area (a region between breaks), add
 	  // it to the queue.
