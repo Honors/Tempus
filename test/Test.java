@@ -2,9 +2,32 @@ public class Test extends Examen {
   public Boolean testDuration(Float duration, float blockSize) {
     return testDuration(duration, blockSize, blockSize);
   }
+
+  //Griffin added
+  public int toHours(float minutes){
+    return( (int)(minutes)/60 );
+  }
+  public int leftoverMinutes(float minutes){
+    return((int)( minutes - (this.toHours(minutes) * 60) ));
+  }
+
   public void renderList(Float[] sorted) {
-    for( Float sort : sorted )
-      System.out.print(sort + " | ");
+    float time = 470f;  //7:50 AM in minutes passed
+
+    //Print first case (not in array)
+    System.out.println("Start Time: 0" + this.toHours(time) + ":" + this.leftoverMinutes(time));
+    System.out.print("0" + this.toHours(time) + ":" + this.leftoverMinutes(time) + " -- ");
+    
+    //Print array
+    for( Float sort : sorted ){
+      time+=sort;
+      int hours = toHours(time);
+      int minutes = leftoverMinutes(time);
+      String formattedTime = new String((hours<10 ? "0": "") + hours + ":" + (minutes<10 ? "0":"") + minutes);
+      System.out.println(formattedTime);
+      System.out.print(formattedTime + " -- ");   //Sadly, last iteration leaves this statement behind on its own line
+      
+    }
   }
   public Boolean testDuration(Float duration, float low, float high) {
     // form a list of blocks and breaks and form
@@ -18,6 +41,12 @@ public class Test extends Examen {
     Break[] breaks = {};
     Schedule sched = new Schedule();
     Float[] sorted = sched.reshape(segments, breaks, duration);
+
+    //Grifin Added -- prints schedule
+    System.out.println();
+    renderList(sorted);
+    System.out.println();
+    
     return inRange(sorted[2], (int)low, (int)high);
   }
   public Boolean testDefault() {
