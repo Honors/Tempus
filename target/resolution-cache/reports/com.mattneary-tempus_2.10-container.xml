@@ -7,7 +7,7 @@
 		revision="0.1.0"
 		conf="container"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, container, scalate"
-		date="20130923083828"/>
+		date="20130924081239"/>
 	<dependencies>
 		<module organisation="org.eclipse.jetty" name="jetty-webapp">
 			<revision name="8.1.8.v20121106" status="release" pubdate="20121106101247" resolver="public" artresolver="public" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="0">

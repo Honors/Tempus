@@ -1,4 +1,4 @@
-[0m[[0minfo[0m] [0mUpdating {file:/Users/mattneary/Desktop/imgurious/}tempus...[0m
+[0m[[0minfo[0m] [0mUpdating {file:/Users/mattneary/Desktop/TempusServer/}tempus...[0m
 [0m[[0mdebug[0m] [0m:: resolving dependencies :: com.mattneary#tempus_2.10;0.1.0[0m
 [0m[[0mdebug[0m] [0m	confs: [compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, container, scalate][0m
 [0m[[0mdebug[0m] [0m	validate = true[0m
@@ -4864,7 +4864,7 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.mattneary#tempus_2.10;0.1.0->com.mojolly.scalate#scalate-generator_2.10;0.4.2 [scalate->master][0m
 [0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
 [0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
-[0m[[0mdebug[0m] [0m	resolved ivy file produced in /Users/mattneary/Desktop/imgurious/target/resolution-cache/com.mattneary/tempus_2.10/0.1.0/resolved.xml.xml[0m
+[0m[[0mdebug[0m] [0m	resolved ivy file produced in /Users/mattneary/Desktop/TempusServer/target/resolution-cache/com.mattneary/tempus_2.10/0.1.0/resolved.xml.xml[0m
 [0m[[0mdebug[0m] [0m:: downloading artifacts ::[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scalatra#scalatra_2.10;2.2.1!scalatra_2.10.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scalatra#scalatra-scalate_2.10;2.2.1!scalatra-scalate_2.10.jar[0m
@@ -4930,20 +4930,20 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.eclipse.jetty#jetty-http;8.1.8.v20121106!jetty-http.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.eclipse.jetty#jetty-io;8.1.8.v20121106!jetty-io.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] com.mojolly.scalate#scalate-generator_2.10;0.4.2!scalate-generator_2.10.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 3527ms :: artifacts dl 188ms[0m
-[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 compile produced in /Users/mattneary/Desktop/imgurious/target/resolution-cache/reports/com.mattneary-tempus_2.10-compile.xml[0m
-[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 runtime produced in /Users/mattneary/Desktop/imgurious/target/resolution-cache/reports/com.mattneary-tempus_2.10-runtime.xml[0m
-[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 test produced in /Users/mattneary/Desktop/imgurious/target/resolution-cache/reports/com.mattneary-tempus_2.10-test.xml[0m
-[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 provided produced in /Users/mattneary/Desktop/imgurious/target/resolution-cache/reports/com.mattneary-tempus_2.10-provided.xml[0m
-[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 optional produced in /Users/mattneary/Desktop/imgurious/target/resolution-cache/reports/com.mattneary-tempus_2.10-optional.xml[0m
-[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 compile-internal produced in /Users/mattneary/Desktop/imgurious/target/resolution-cache/reports/com.mattneary-tempus_2.10-compile-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 runtime-internal produced in /Users/mattneary/Desktop/imgurious/target/resolution-cache/reports/com.mattneary-tempus_2.10-runtime-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 test-internal produced in /Users/mattneary/Desktop/imgurious/target/resolution-cache/reports/com.mattneary-tempus_2.10-test-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 plugin produced in /Users/mattneary/Desktop/imgurious/target/resolution-cache/reports/com.mattneary-tempus_2.10-plugin.xml[0m
-[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 sources produced in /Users/mattneary/Desktop/imgurious/target/resolution-cache/reports/com.mattneary-tempus_2.10-sources.xml[0m
-[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 docs produced in /Users/mattneary/Desktop/imgurious/target/resolution-cache/reports/com.mattneary-tempus_2.10-docs.xml[0m
-[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 pom produced in /Users/mattneary/Desktop/imgurious/target/resolution-cache/reports/com.mattneary-tempus_2.10-pom.xml[0m
-[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 container produced in /Users/mattneary/Desktop/imgurious/target/resolution-cache/reports/com.mattneary-tempus_2.10-container.xml[0m
-[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 scalate produced in /Users/mattneary/Desktop/imgurious/target/resolution-cache/reports/com.mattneary-tempus_2.10-scalate.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (3527ms resolve - 188ms download)[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 1525ms :: artifacts dl 78ms[0m
+[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 compile produced in /Users/mattneary/Desktop/TempusServer/target/resolution-cache/reports/com.mattneary-tempus_2.10-compile.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 runtime produced in /Users/mattneary/Desktop/TempusServer/target/resolution-cache/reports/com.mattneary-tempus_2.10-runtime.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 test produced in /Users/mattneary/Desktop/TempusServer/target/resolution-cache/reports/com.mattneary-tempus_2.10-test.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 provided produced in /Users/mattneary/Desktop/TempusServer/target/resolution-cache/reports/com.mattneary-tempus_2.10-provided.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 optional produced in /Users/mattneary/Desktop/TempusServer/target/resolution-cache/reports/com.mattneary-tempus_2.10-optional.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 compile-internal produced in /Users/mattneary/Desktop/TempusServer/target/resolution-cache/reports/com.mattneary-tempus_2.10-compile-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 runtime-internal produced in /Users/mattneary/Desktop/TempusServer/target/resolution-cache/reports/com.mattneary-tempus_2.10-runtime-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 test-internal produced in /Users/mattneary/Desktop/TempusServer/target/resolution-cache/reports/com.mattneary-tempus_2.10-test-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 plugin produced in /Users/mattneary/Desktop/TempusServer/target/resolution-cache/reports/com.mattneary-tempus_2.10-plugin.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 sources produced in /Users/mattneary/Desktop/TempusServer/target/resolution-cache/reports/com.mattneary-tempus_2.10-sources.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 docs produced in /Users/mattneary/Desktop/TempusServer/target/resolution-cache/reports/com.mattneary-tempus_2.10-docs.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 pom produced in /Users/mattneary/Desktop/TempusServer/target/resolution-cache/reports/com.mattneary-tempus_2.10-pom.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 container produced in /Users/mattneary/Desktop/TempusServer/target/resolution-cache/reports/com.mattneary-tempus_2.10-container.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.mattneary#tempus_2.10;0.1.0 scalate produced in /Users/mattneary/Desktop/TempusServer/target/resolution-cache/reports/com.mattneary-tempus_2.10-scalate.xml[0m
+[0m[[0mdebug[0m] [0m	resolve done (1525ms resolve - 78ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m

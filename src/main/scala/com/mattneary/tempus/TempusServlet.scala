@@ -13,7 +13,7 @@ import net.liftweb.json.JsonDSL._
 import java.io.{File,FileInputStream,FileOutputStream}
 
 class TempusServlet extends TempusStack {
-  val dest = "/Users/mattneary/Desktop/imgurious/"
+  val dest = "/Users/mattneary/Desktop/TempusServer/"
   val file = "index.html"
   def renderPage(file: String) {
     org.scalatra.util.io.copy(new FileInputStream(file), response.getOutputStream)
@@ -26,5 +26,10 @@ class TempusServlet extends TempusStack {
     val rest = multiParams("splat")
     val file = rest.mkString("/")
     renderPage(dest + file)
+  }
+  post("/submit") {
+    contentType = "text/plaintext"
+    response.getOutputStream.print(request.getParameter("break"))
+    response.getOutputStream.close()
   }
 }
