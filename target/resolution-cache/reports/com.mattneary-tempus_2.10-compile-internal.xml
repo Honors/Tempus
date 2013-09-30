@@ -7,7 +7,7 @@
 		revision="0.1.0"
 		conf="compile-internal"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, container, scalate"
-		date="20130924081239"/>
+		date="20130929193109"/>
 	<dependencies>
 		<module organisation="net.liftweb" name="lift-webkit_2.10">
 			<revision name="2.5-RC1" status="release" pubdate="20130221224501" resolver="public" artresolver="public" homepage="http://www.liftweb.net" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="18">

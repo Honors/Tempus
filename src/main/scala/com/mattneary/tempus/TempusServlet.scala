@@ -12,11 +12,10 @@ import java.io._
 import org.slf4j.{Logger, LoggerFactory}
 import java.nio._
 import net.liftweb.json._
-import net.liftweb.json.JsonDSL._
 import java.io.{File,FileInputStream,FileOutputStream}
 
 class TempusServlet extends TempusStack {
-  val dest = "/Users/mattneary/Desktop/TempusServer/"
+  val dest = "/Users/mattneary/Desktop/School/Honors Java/Schedules/TempusServer/"
   val file = "index.html"
   def renderPage(file: String) {
     org.scalatra.util.io.copy(new FileInputStream(file), response.getOutputStream)
@@ -52,8 +51,9 @@ class TempusServlet extends TempusStack {
     val minStart = comps(0)*60 + comps(1) - 470
     val minEnd = 913 - 470
     val period = parseNum(request.getParameter("period"))
-    val calced = calc(structure(period), minEnd - minStart).mkString(" | ")
-    response.getOutputStream.print(minStart+" start\n"+calced+"\n")
+    val calced = JArray(calc(structure(period), minEnd - minStart).toArray.toList.map(_.toDouble).map(JDouble))
+    val times = compact(JsonAST.render(calced))
+    response.getOutputStream.print(times)
     response.getOutputStream.close()
   }
 }

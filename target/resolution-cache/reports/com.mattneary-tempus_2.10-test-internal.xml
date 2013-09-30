@@ -7,7 +7,7 @@
 		revision="0.1.0"
 		conf="test-internal"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, container, scalate"
-		date="20130924081239"/>
+		date="20130929193109"/>
 	<dependencies>
 		<module organisation="ch.qos.logback" name="logback-classic">
 			<revision name="1.0.11" status="release" pubdate="20130325110238" resolver="public" artresolver="public" homepage="http://logback.qos.ch" downloaded="false" searched="false" default="false" conf="default(compile)" position="31">
