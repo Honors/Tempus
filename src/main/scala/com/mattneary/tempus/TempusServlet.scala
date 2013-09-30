@@ -22,10 +22,10 @@ class TempusServlet extends TempusStack {
   }
   def parseNum(s: String) : Int = s.toInt
   def structure(offset: Int) : Array[Block] = {
-    val offsets = HashMap( 1 -> 3, 2 -> 5, 3 -> 7, 4 -> 10, 5 -> 12, 6 -> 14, 7 -> 17, 8 -> 19 )
+    val offsets = HashMap( 0 -> 1, 1 -> 3, 2 -> 5, 3 -> 7, 4 -> 10, 5 -> 12, 6 -> 14, 7 -> 17, 8 -> 19 )
     val hr = new Block(7, false)
     val n = new Block(32, true)
-    val l = new Block(74, false)
+    val l = new Block(77, false)
     val s = new Block(5, false)
     val a = new Block(2, false)
     val day = Array(hr, s, n, s, n, s, n, s, n, a, s, l, s, n, s, n, a, s, n)
@@ -48,8 +48,9 @@ class TempusServlet extends TempusStack {
     contentType = "text/plaintext"
     val start = request.getParameter("start")
     val comps = start.split(":").map(parseNum)
-    val minStart = comps(0)*60 + comps(1) - 470
-    val minEnd = 913 - 470
+    val endComps = request.getParameter("end").split(":").map(parseNum)
+    val minStart = comps(0)*60 + comps(1)
+    val minEnd = endComps(0)*60 + endComps(1)
     val period = parseNum(request.getParameter("period"))
     val calced = JArray(calc(structure(period), minEnd - minStart).toArray.toList.map(_.toDouble).map(JDouble))
     val times = compact(JsonAST.render(calced))
