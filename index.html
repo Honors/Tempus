@@ -1,5 +1,19 @@
-<form action="/submit" method="POST">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+<form action="/submit" method="POST" id="form">
   <input type="text" name="period" placeholder="Period">
   <input type="text" name="start" placeholder="Period which Ended">
   <input type="submit">
 </form>
+<ul id="resp"></ul>
+<script>
+  $("#form").submit(function(evt) {
+    evt.preventDefault();
+    $.post("/submit", { 
+      period: $("input[name=period]").val(),
+      start: $("input[name=start]").val() 
+    }, function(data) {
+      var resp = JSON.parse(data);
+      $("#resp").html("<li>"+resp.join("</li><li>")+"</li>");
+    });
+  });
+</script>
