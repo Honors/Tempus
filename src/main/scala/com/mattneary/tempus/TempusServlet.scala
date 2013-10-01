@@ -22,6 +22,7 @@ class TempusServlet extends TempusStack {
   }
   def parseNum(s: String) : Int = s.toInt
   def structure(offset: Int) : Array[Block] = {
+    // TODO: allow for lunch length to be adjusted.
     val offsets = HashMap( 0 -> 1, 1 -> 3, 2 -> 5, 3 -> 7, 4 -> 10, 5 -> 12, 6 -> 14, 7 -> 17, 8 -> 19 )
     val hr = new Block(7, false)
     val n = new Block(32, true)
