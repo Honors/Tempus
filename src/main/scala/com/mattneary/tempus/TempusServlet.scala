@@ -52,6 +52,7 @@ class TempusServlet extends TempusStack {
     val minStart = comps(0)*60 + comps(1)
     val minEnd = endComps(0)*60 + endComps(1)
     val period = parseNum(request.getParameter("period"))
+    System.out.print("range "+minEnd+" < "+minStart)
     val calced = JArray(calc(structure(period), minEnd - minStart).toArray.toList.map(_.toDouble).map(JDouble))
     val times = compact(JsonAST.render(calced))
     response.getOutputStream.print(times)

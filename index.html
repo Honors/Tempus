@@ -8,6 +8,7 @@
     width: 500px;
     left: 50%;
     margin-left: -250px;
+    padding-bottom: 100px;
   }
   ul {
     list-style: none;
@@ -31,31 +32,65 @@
 <div id="wrapper">
   <h1>Class Schedule</h1>
   <form action="/submit" method="POST" id="form">
-    <span class="label">What period has ended?</span><input type="text" name="period" placeholder="Period" value="0">
+    <span class="label">How many periods have ended?</span><input type="text" name="period" placeholder="Period" value="0">
     <span class="label">What time is it?</span><input type="text" name="start" placeholder="Start Time" value="7:57">
     <span class="label">When does school end?</span><input type="text" name="end" placeholder="End Time" value="3:13">
-    <br><span class="radiolbl">AM</span><input type="radio" name="ampm" value="AM"><span class="radiolbl">or PM</span><input type="radio" name="ampm" value="PM" id="pm" checked>
     <br><input type="submit">
   </form>
   <ul id="resp"></ul>
 </div>  
 <script>
   var debug = false;
-  var handlePM = function(time, pm) {
+  var parseNum = function(x) {
+    return parseInt(x, 10);
+  };
+  var handlePM = function(time) {
     if( !time ) return null;
     var comps = time.split(":");
-    return pm ? (parseInt(comps[0])+12)+":"+comps[1] : time;
+    var hour = parseNum(comps[0]);
+    var pm = hour < 5;
+    return pm ? (parseNum(comps[0])+12)+":"+comps[1] : time;
+  };
+  var pad = function(parts) {
+    return parts.map(function(p) {
+      return (1e15+""+p).slice(-2);
+    });
+  };
+  var normalize = function(parts) {
+    parts = parts.map(Math.round);
+    if( parts[1] >= 60 ) {
+      return normalize([parts[0]+1, parts[1]-60]);
+    } else if( parts[0] > 12 ) {
+      return normalize([parts[0]-12, parts[1]]);
+    };
+    return parts;
+  };
+  var addTime = function(time, shift) {    
+    var start = time.split(":").map(parseNum);
+    var after = pad(normalize([start[0], start[1]+shift]));
+    console.log("shift", time, shift, after.join(":"))
+    return after.join(":");
   };
   $("#form").submit(function(evt) {
     evt.preventDefault();
     var startTime = $("input[name=start]").val() || (new Date()).getHours() + (new Date()).getMinutes();
-    $.post("/submit", { 
+    startTime = pad(startTime.split(":")).join(":");
+    console.log(handlePM($("input[name=end]").val()), startTime)
+    var d;
+    $.post("/submit", d={ 
       period: $("input[name=period]").val(),
       start: startTime,
-      end: handlePM($("input[name=end]").val(), $("#pm")[0].checked)
+      end: handlePM($("input[name=end]").val())
     }, function(data) {
+      console.log(data);
       var resp = JSON.parse(data);
-      $("#resp").html("<li>"+resp.join("</li><li>")+"</li>");
+      var time = startTime;
+      $("#resp").html("");
+      resp.forEach(function(p) {
+        var aTime = time;
+        time = addTime(time, p);
+	$("#resp").append(["<li>", aTime, " - ", time, "</li>"].join(""));
+      });
     });
   });
 </script>
