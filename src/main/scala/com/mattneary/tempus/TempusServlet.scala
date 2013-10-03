@@ -21,12 +21,11 @@ class TempusServlet extends TempusStack {
     org.scalatra.util.io.copy(new FileInputStream(file), response.getOutputStream)
   }
   def parseNum(s: String) : Int = s.toInt
-  def structure(offset: Int) : Array[Block] = {
-    // TODO: allow for lunch length to be adjusted.
-    val offsets = HashMap( 0 -> 1, 1 -> 3, 2 -> 5, 3 -> 7, 4 -> 10, 5 -> 12, 6 -> 14, 7 -> 17, 8 -> 19 )
+  def structure(offset: Int, lunch: Int) : Array[Block] = {
+    val offsets = HashMap( 0 -> 2, 1 -> 4, 2 -> 6, 3 -> 8, 4 -> 11, 5 -> 13, 6 -> 15, 7 -> 18, 8 -> 20 )
     val hr = new Block(7, false)
     val n = new Block(32, true)
-    val l = new Block(77, false)
+    val l = new Block(lunch, false)
     val s = new Block(5, false)
     val a = new Block(2, false)
     val day = Array(hr, s, n, s, n, s, n, s, n, a, s, l, s, n, s, n, a, s, n)
@@ -53,8 +52,8 @@ class TempusServlet extends TempusStack {
     val minStart = comps(0)*60 + comps(1)
     val minEnd = endComps(0)*60 + endComps(1)
     val period = parseNum(request.getParameter("period"))
-    System.out.print("range "+minEnd+" < "+minStart)
-    val calced = JArray(calc(structure(period), minEnd - minStart).toArray.toList.map(_.toDouble).map(JDouble))
+    val lunch = parseNum(request.getParameter("lunch"))
+    val calced = JArray(calc(structure(period, lunch), minEnd - minStart).toArray.toList.map(_.toDouble).map(JDouble))
     val times = compact(JsonAST.render(calced))
     response.getOutputStream.print(times)
     response.getOutputStream.close()

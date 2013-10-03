@@ -33,8 +33,9 @@
   <h1>Class Schedule</h1>
   <form action="/submit" method="POST" id="form">
     <span class="label">How many periods have ended?</span><input type="text" name="period" placeholder="Period" value="0">
-    <span class="label">What time is it?</span><input type="text" name="start" placeholder="Start Time" value="7:57">
+    <span class="label">When does the next period begin?</span><input type="text" name="start" placeholder="Start Time" value="7:57">
     <span class="label">When does school end?</span><input type="text" name="end" placeholder="End Time" value="3:13">
+    <span class="label">Non-standard lunch length?</span><input type="text" name="lunch" value="77">
     <br><input type="submit">
   </form>
   <ul id="resp"></ul>
@@ -73,14 +74,14 @@
   };
   $("#form").submit(function(evt) {
     evt.preventDefault();
-    var startTime = $("input[name=start]").val() || (new Date()).getHours() + (new Date()).getMinutes();
+    var startTime = handlePM($("input[name=start]").val()) || (new Date()).getHours() + (new Date()).getMinutes();
     startTime = pad(startTime.split(":")).join(":");
-    console.log(handlePM($("input[name=end]").val()), startTime)
     var d;
     $.post("/submit", d={ 
       period: $("input[name=period]").val(),
       start: startTime,
-      end: handlePM($("input[name=end]").val())
+      end: handlePM($("input[name=end]").val()),
+      lunch: $("input[name=lunch]").val()
     }, function(data) {
       console.log(data);
       var resp = JSON.parse(data);
