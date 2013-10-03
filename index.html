@@ -28,12 +28,17 @@
     padding-right: 5px;
     padding-left: 5px;
   }
+  .annotation {
+    margin-left: -20px;
+    display: block;
+    float: left;
+  }
 </style>
 <div id="wrapper">
   <h1>Class Schedule</h1>
   <form action="/submit" method="POST" id="form">
     <span class="label">How many periods have ended?</span><input type="text" name="period" placeholder="Period" value="0">
-    <span class="label">When does the next period begin?</span><input type="text" name="start" placeholder="Start Time" value="7:57">
+    <span class="label">When does the next period begin?</span><input type="text" name="start" placeholder="Start Time" value="8:02">
     <span class="label">When does school end?</span><input type="text" name="end" placeholder="End Time" value="3:13">
     <span class="label">Non-standard lunch length?</span><input type="text" name="lunch" value="77">
     <br><input type="submit">
@@ -86,10 +91,26 @@
       console.log(data);
       var resp = JSON.parse(data);
       var time = startTime;
+      var period = parseNum($("input[name=period]").val())+1;
       $("#resp").html("");
       resp.forEach(function(p) {
         var aTime = time;
         time = addTime(time, p);
+	if( p == $("input[name=lunch]").val() && period == 5 ) {
+	  var sub = Math.round(p/3);
+	  var sTime = aTime;
+	  [sub, sub, sub].forEach(function(l, i) {
+	    var next = addTime(sTime, l);
+	    $("#resp").append(["<li><span class='annotation'>", ["A", "B", "C"][i], "</span>", sTime, " - ", next, "</li>"].join(""))
+	    sTime = next;
+	  });
+	  period++;
+          return;
+	} else if( p == resp[0] ) {
+          $("#resp").append(["<li><span class='annotation'>", period, "</span>", aTime, " - ", time, "</li>"].join(""));
+	  period++;
+	  return;
+	}
 	$("#resp").append(["<li>", aTime, " - ", time, "</li>"].join(""));
       });
     });
