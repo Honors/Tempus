@@ -33,6 +33,10 @@
     display: block;
     float: left;
   }
+  @media print {
+    form { display: none; }
+    h1 { text-align: center; }
+  }
 </style>
 <div id="wrapper">
   <h1>Class Schedule</h1>
@@ -111,6 +115,7 @@
 	  period++;
 	  return;
 	}
+	if( p == 5 ) return;
 	$("#resp").append(["<li>", aTime, " - ", time, "</li>"].join(""));
       });
     });

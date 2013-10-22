@@ -83,7 +83,8 @@ get_script_path () {
 # a ham-fisted attempt to move some memory settings in concert
 # so they need not be dicked around with individually.
 get_mem_opts () {
-  local mem=${1:-1536}
+#  local mem=${1:-1536}
+  local mem="64m"
   local perm=$(( $mem / 4 ))
   (( $perm > 256 )) || perm=256
   (( $perm < 1024 )) || perm=1024
